@@ -11,7 +11,8 @@ class UpdateItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // Caso precise de alguma autorização, verificar aqui
+        return true;
     }
 
     /**
@@ -22,7 +23,10 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'string',
+            'category' => 'string',
+            'status' => 'boolean',
+            'quantity' => 'integer',
         ];
     }
 }
