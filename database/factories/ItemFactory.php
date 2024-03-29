@@ -17,7 +17,12 @@ class ItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word,
+            'category' => fake()->word,
+            'status' => fake()->boolean,
+            'quantity' => fake()->numberBetween(1, 100),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
