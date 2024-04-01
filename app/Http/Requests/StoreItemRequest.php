@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class StoreItemRequest extends FormRequest
 {
@@ -28,5 +31,21 @@ class StoreItemRequest extends FormRequest
             'status' => 'required|boolean',
             'quantity' => 'required|integer',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param Validator $validator
+     * @throws HttpResponseException
+     */
+    protected function failedValidation(Validator $validator): void
+    {
+        $response = new JsonResponse([
+            'message' => 'Validation error',
+            'errors' => $validator->errors(),
+        ], 422);
+
+        throw new HttpResponseException($response);
     }
 }
