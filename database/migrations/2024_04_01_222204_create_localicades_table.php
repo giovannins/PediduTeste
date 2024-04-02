@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('localicades', function (Blueprint $table) {
+        Schema::create('localidades', function (Blueprint $table) {
             $table->id();
-            $table->integer('ibge_id');
+            $table->integer('ibge_id')->unique();
             $table->string('ibge_name');
         });
     }
