@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('ibge_id')->unique();
             $table->string('ibge_name');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('localicades');
+        Schema::dropIfExists('localidades');
     }
 };
